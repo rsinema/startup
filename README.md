@@ -17,3 +17,5 @@ Are you sick of Instagram and Facebook with the needless amounts of ads, toxicit
 - Post images to your profile
 - See images of other users that have been added
 - Posts are persistenly stored
+
+![Screenshot 2023-01-25 at 1 26 07 PM](https://user-images.githubusercontent.com/122413893/214682423-0e880b20-3310-4fa8-96ef-d7bbbf1cc60c.png)
