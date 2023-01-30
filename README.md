@@ -26,6 +26,9 @@ IP addresses are converted to domain names
 #### TCP/IP models
 
 Application	HTTPS	Functionality like web browsing
+
 Transport	TCP	Moving connection information packets
+
 Internet	IP	Establishing connections
+
 Link	Fiber, hardware	Physical connections
