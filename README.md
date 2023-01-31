@@ -32,3 +32,9 @@ Transport	TCP	Moving connection information packets
 Internet	IP	Establishing connections
 
 Link	Fiber, hardware	Physical connections
+
+## Server Info
+
+IP:: 3.12.180.81
+
+SSH Command:: ssh -i /Users/rileysinema/Desktop/260-server-keypair ubuntu@3.12.180.81
