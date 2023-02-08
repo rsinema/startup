@@ -37,4 +37,6 @@ Link	Fiber, hardware	Physical connections
 
 IP:: 3.12.180.81
 
+Domain:: 260webprograming.click/
+
 SSH Command:: ssh -i /Users/rileysinema/Desktop/260-server-keypair ubuntu@3.12.180.81
