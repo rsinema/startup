@@ -39,4 +39,6 @@ IP:: 3.12.180.81
 
 Domain:: 260webprograming.click/
 
-SSH Command:: ssh -i /Users/rileysinema/Desktop/260-server-keypair ubuntu@3.12.180.81
+SSH Command:: ssh -i /Users/rileysinema/Desktop/260-server-keypair.pem ubuntu@3.12.180.81
+
+Update Script Command:: ./deployWebsite.sh -k /Users/rileysinema/Desktop/260-server-keypair.pem -h 260webprograming.click
