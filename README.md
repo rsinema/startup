@@ -42,3 +42,8 @@ Domain:: 260webprograming.click/
 SSH Command:: ssh -i /Users/rileysinema/Desktop/260-server-keypair.pem ubuntu@3.12.180.81
 
 Update Script Command:: ./deployWebsite.sh -k /Users/rileysinema/Desktop/260-server-keypair.pem -h 260webprograming.click
+
+## CSS
+
+![image](https://user-images.githubusercontent.com/122413893/218875567-b7ed1e5a-84f7-420e-b766-58b103de5368.png)
+
