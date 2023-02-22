@@ -15,6 +15,18 @@ main {
     align-items: center;
     justify-content: space-around;
 }
+
+footer {
+    flex: 0 30px;
+}
+  
+menu {
+    flex: 1;
+    display: flex;
+    /*  overwrite Bootstrap so the menu does not wrap */
+    flex-direction: row !important;
+    list-style: none;
+}
   
 .navbar-brand {
     padding-left: 0.3em;
