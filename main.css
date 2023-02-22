@@ -6,6 +6,7 @@ body {
 
 header {
     flex: 0 80px;
+    font-size: 150%;
 }
 
 main {
@@ -14,6 +15,12 @@ main {
     flex-direction: column;
     align-items: center;
     justify-content: space-around;
+    color: #344E41;
+}
+
+#Login_div {
+    margin: 100px;
+    text-align: center;
 }
 
 footer {
@@ -23,7 +30,6 @@ footer {
 menu {
     flex: 1;
     display: flex;
-    /*  overwrite Bootstrap so the menu does not wrap */
     flex-direction: row !important;
     list-style: none;
 }
@@ -31,8 +37,15 @@ menu {
 .navbar-brand {
     padding-left: 0.3em;
     border-bottom: solid rgb(182, 182, 182) thin;
+    font-family: monospace;
+}
+
+#nav_title {
+    font-size: 200%;
 }
 
 menu .nav-item {
     padding: 0 0.3em;
+    border-bottom: solid rgb(182, 182, 182) thin;
+    font-family: monospace;
 }
