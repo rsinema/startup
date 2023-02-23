@@ -12,21 +12,15 @@ header {
 main {
     flex: 1 calc(100vh - 110px);
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
+    align-items: center;
     justify-content: space-around;
     color: #344E41;
 }
 
-#image {
-    flex: 1;
-    margin-top: 2%;
-    margin-bottom: 2%;
-}
-
-#info {
-    flex: 3;
-    margin-top: 2%;
-    margin-bottom: 2%;
+#Login_div {
+    margin: 100px;
+    text-align: center;
 }
 
 footer {
