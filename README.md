@@ -49,3 +49,9 @@ Update Simon Command:: ./deployFiles.sh -k /Users/rileysinema/Desktop/260-server
 
 ![image](https://user-images.githubusercontent.com/122413893/218875567-b7ed1e5a-84f7-420e-b766-58b103de5368.png)
 
+# Google fonts
+@import url(<<href to googleapi font css family>>)
+  
+
+
+
