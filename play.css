@@ -59,15 +59,40 @@ menu .nav-item {
     font-family: monospace;
 }
 
-.rectangle {
-    margin-inline: 300px;
-    height: 40px;
-    width: 8px;
-    background-color: #A3B18A;
+#gameCanvas {
+    height: 800;
+    width: 500;
+    border: 3px solid #588157;
 }
 
-.ball {
-    height: 8px;
-    width: 8px;
-    background-color: #588157;
+#spacerDiv {
+    height: 100px;
+}
+
+.players {
+    flex: 1;
+    width: 100%;
+    padding: 0.5em;
+    margin-left: 0;
+}
+
+.player-name {
+    color: rgb(118, 190, 210);
+}
+
+#infoDiv {
+    align-self: center;
+    align-items: center;
+    display: flex;
+    flex-direction: row;
+    padding: 50px;
+}
+
+.info {
+    border-top: solid #344E41 thin;
+    align-self: baseline;
+    align-items: center;
+    flex: 1;
+    width: 350px;
+    padding: 15px;
 }
