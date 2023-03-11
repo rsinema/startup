@@ -1,3 +1,5 @@
+scorePosted = false;
+
 function getPlayerName() {
     return localStorage.getItem('userName') ?? 'Mystery player'; 
 }
@@ -6,8 +8,6 @@ window.onload = function () {
     const playerNameEl = document.querySelector('.player-name');
     playerNameEl.textContent = getPlayerName();
 }
-
-
 
 function OnePlayer(canvas) {
     document.getElementById('play').removeEventListener('click', clearCanvas);
@@ -85,7 +85,6 @@ function OnePlayer(canvas) {
         };
     
     function paddle1Stop() {
-    console.log('keydown');
     clearInterval(timer);
     timer= null;
     };
@@ -346,7 +345,6 @@ function TwoPlayer(canvas) {
         };
     
     function paddle1Stop() {
-    console.log('keydown');
     clearInterval(timer1);
     timer1= null;
     };
@@ -376,7 +374,6 @@ function TwoPlayer(canvas) {
         };
     
     function paddle2Stop() {
-    console.log('keydown');
     clearInterval(timer2);
     timer2= null;
     };
@@ -571,7 +568,6 @@ function OnePlayerInfinite(canvas) {
         };
     
     function paddle1Stop() {
-    console.log('keydown');
     clearInterval(timer);
     timer= null;
     };
@@ -671,7 +667,7 @@ function OnePlayerInfinite(canvas) {
             document.getElementById('play').addEventListener('click', clearCanvas);
 
             saveScore(player2Score);
-
+            console.log('end of game')
             canvasContext.fillStyle = '#588157';
             canvasContext.font = "25px monospace";
             canvasContext.textAlign = 'center';
@@ -726,6 +722,7 @@ function startGame() {
 
 function clearCanvas() {
     document.getElementById('play').removeEventListener('click', clearCanvas);
+    scorePosted = false;
     console.log('clear canvas')
     delete pong;
     const gameDiv = document.getElementById('gameDiv');
@@ -735,15 +732,18 @@ function clearCanvas() {
 }
 
 function saveScore(score) {
-    const userName = this.getPlayerName();
-    let scores = [];
-    const scoresText = localStorage.getItem('scores');
-    if (scoresText) {
-      scores = JSON.parse(scoresText);
-    }
-    scores = this.updateScores(userName, score, scores);
+    if (scorePosted === false) {
+        scorePosted = true;
+        const userName = this.getPlayerName();
+        let scores = [];
+        const scoresText = localStorage.getItem('scores');
+        if (scoresText) {
+        scores = JSON.parse(scoresText);
+        }
+        scores = this.updateScores(userName, score, scores);
 
-    localStorage.setItem('scores', JSON.stringify(scores));
+        localStorage.setItem('scores', JSON.stringify(scores));
+    }
 }
 
  function updateScores(userName, score, scores) {
