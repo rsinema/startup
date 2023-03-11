@@ -1,6 +1,6 @@
 function loadScores() {
     let scores = [];
-    const scoresText = localStorage.getItem('scores');
+    const scoresText = localStorage.getItem('pongScores');
     if (scoresText) {
       scores = JSON.parse(scoresText);
     }

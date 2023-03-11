@@ -736,13 +736,13 @@ function saveScore(score) {
         scorePosted = true;
         const userName = this.getPlayerName();
         let scores = [];
-        const scoresText = localStorage.getItem('scores');
+        const scoresText = localStorage.getItem('pongScores');
         if (scoresText) {
         scores = JSON.parse(scoresText);
         }
         scores = this.updateScores(userName, score, scores);
 
-        localStorage.setItem('scores', JSON.stringify(scores));
+        localStorage.setItem('pongScores', JSON.stringify(scores));
     }
 }
 
