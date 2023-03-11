@@ -52,6 +52,8 @@ Update Simon Command:: ./deployFiles.sh -k /Users/rileysinema/Desktop/260-server
 # Google fonts
 @import url(<<href to googleapi font css family>>)
   
+## JavaScript
 
+element.addEventListener('keyup'/'keydown'/'mouseclick', function)
 
 
