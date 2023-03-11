@@ -658,6 +658,9 @@ function OnePlayerInfinite(canvas) {
 
         if (showingWinScreen) {
             document.getElementById('play').addEventListener('click', clearCanvas);
+
+            saveScore(player2Score);
+
             canvasContext.fillStyle = '#588157';
             canvasContext.font = "25px monospace";
             canvasContext.textAlign = 'center';
@@ -718,4 +721,40 @@ function clearCanvas() {
     gameDiv.innerHTML = '';
     gameDiv.innerHTML = '<canvas id="gameCanvas" width="800" height="600"></canvas>';
     startGame()
+}
+
+function saveScore(score) {
+    const userName = this.getPlayerName();
+    let scores = [];
+    const scoresText = localStorage.getItem('scores');
+    if (scoresText) {
+      scores = JSON.parse(scoresText);
+    }
+    scores = this.updateScores(userName, score, scores);
+
+    localStorage.setItem('scores', JSON.stringify(scores));
+}
+
+ function updateScores(userName, score, scores) {
+    const date = new Date().toLocaleDateString();
+    const newScore = { name: userName, score: score, date: date };
+
+    let found = false;
+    for (const [i, prevScore] of scores.entries()) {
+      if (score > prevScore.score) {
+        scores.splice(i, 0, newScore);
+        found = true;
+        break;
+      }
+    }
+
+    if (!found) {
+      scores.push(newScore);
+    }
+
+    if (scores.length > 10) {
+      scores.length = 10;
+    }
+
+    return scores;
 }
