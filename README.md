@@ -33,6 +33,11 @@ Internet	IP	Establishing connections
 
 Link	Fiber, hardware	Physical connections
 
+## VS Code Git
+
+comd+shift+p -> Git : Merge 
+-merges the selected branch to the current branch you are working on
+
 ## Server Info
 
 IP:: 3.12.180.81
