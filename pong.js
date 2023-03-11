@@ -1,3 +1,10 @@
+function getPlayerName() {
+    return localStorage.getItem('userName') ?? 'Mystery player';
+}
+
+const playerNameEl = document.querySelector('.player-name');
+playerNameEl.textContent = getPlayerName();
+
 function OnePlayer(canvas) {
     document.getElementById('play').removeEventListener('click', clearCanvas);
     const FRAMES_PER_SECOND = 60;
