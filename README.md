@@ -59,6 +59,10 @@ Update Simon Command:: ./deployFiles.sh -k /Users/rileysinema/Desktop/260-server
   
 ## JavaScript
 
-element.addEventListener('keyup'/'keydown'/'mouseclick', function)
+element.addEventListener('keyup'/'keydown'/'mouseclick', function);
+  
+## URL
+  
+The Uniform Resource Locator (URL) represents the location of a web resource. A web resource can be anything, such as a web page, font, image, video stream, database record, or JSON object. It can also be completely ephemeral, such as a visitation counter, or gaming session.
 
-
+A Uniform Resource Name (URN) is a unique resource name that does not specify location information. For example, a book URN might be urn:isbn:10,0765350386. A Uniform Resource Identifier (URI) is a general resource identifier that could refer to either a URL and URN. With web programming you are almost always talking about URLs and therefore you should not use the more general URI.
