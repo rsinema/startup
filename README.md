@@ -66,3 +66,38 @@ element.addEventListener('keyup'/'keydown'/'mouseclick', function);
 The Uniform Resource Locator (URL) represents the location of a web resource. A web resource can be anything, such as a web page, font, image, video stream, database record, or JSON object. It can also be completely ephemeral, such as a visitation counter, or gaming session.
 
 A Uniform Resource Name (URN) is a unique resource name that does not specify location information. For example, a book URN might be urn:isbn:10,0765350386. A Uniform Resource Identifier (URI) is a general resource identifier that could refer to either a URL and URN. With web programming you are almost always talking about URLs and therefore you should not use the more general URI.
+  
+## Http
+  
+curl -v -s http://info.cern.ch/hypertext/WWW/Helping.html
+  
+There are several verbs that describe what the HTTP request is asking for. The list below only describes the most common ones.
+
+<verb> <url path, parameters, anchor> <version>
+[<header key: value>]*
+[
+
+  <body>
+]
+    
+<version> <status code> <status string>
+[<header key: value>]*
+[
+
+  <body>
+]
+
+Verb	Meaning
+GET	Get the requested resource. This can represent a request to get a single resource or a resource representing a list of resources.
+POST	Create a new resource. The body of the request contains the resource. The response should include a unique ID of the newly created resource.
+PUT	Update a resource. Either the URL path, HTTP header, or body must contain the unique ID of the resource being updated. The body of the request should contain the updated resource. The body of the response may contain the resulting updated resource.
+DELETE	Delete a resource. Either the URL path or HTTP header must contain the unique ID of the resource to delete.
+OPTIONS	Get metadata about a resource. Usually only HTTP headers are returned. The resource itself is not returned.
+  
+It is important that you use the standard HTTP status codes in your HTTP responses so that the client of a request can know how to interpret the response. The codes are partitioned into five blocks.
+
+1xx - Informational.
+2xx - Success.
+3xx - Redirect to some other location, or that the previously cached resource is still valid.
+4xx - Client errors. The request is invalid.
+5xx - Server errors. The request cannot be satisfied due to an error on the server.
