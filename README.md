@@ -106,8 +106,13 @@ It is important that you use the standard HTTP status codes in your HTTP respons
     
 
 >Create your project directory
+    
 >Initialize it for use with NPM by running npm init -y
+    
 >Make sure .gitignore file contains node-modules
+    
 >Install any desired packages with npm install 'package name here'
+    
 >Add require('package name here') to your JavaScript code
+    
 >Run your code with node main.js
