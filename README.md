@@ -101,3 +101,12 @@ It is important that you use the standard HTTP status codes in your HTTP respons
 3xx - Redirect to some other location, or that the previously cached resource is still valid.
 4xx - Client errors. The request is invalid.
 5xx - Server errors. The request cannot be satisfied due to an error on the server.
+    
+## Node.js stuff
+    
+Create your project directory
+Initialize it for use with NPM by running npm init -y
+Make sure .gitignore file contains node-modules
+Install any desired packages with npm install <package name here>
+Add require('<package name here>') to your JavaScript code
+Run your code with node main.js
