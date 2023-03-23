@@ -116,3 +116,63 @@ It is important that you use the standard HTTP status codes in your HTTP respons
 >Add require('package name here') to your JavaScript code
     
 >Run your code with node main.js
+    
+    
+## Simon-service notes
+     
+    in index.js using express to host the application static content
+    
+    // JSON body parsing using built-in middleware
+    app.use(express.json());
+
+    // Serve up the front-end static content hosting
+    app.use(express.static('public'));
+
+    // Router for service endpoints
+    const apiRouter = express.Router();
+    app.use(`/api`, apiRouter);
+
+    // GetScores
+    apiRouter.get('/scores', (_req, res) => {
+      res.send(scores);
+    });
+
+    // SubmitScore
+    apiRouter.post('/score', (req, res) => {
+      scores = updateScores(req.body, scores);
+      res.send(scores);
+    });
+    
+    // updateScores considers a new score for inclusion in the high scores.
+// The high scores are saved in memory and disappear whenever the service is restarted.
+let scores = [];
+function updateScores(newScore, scores) {
+  let found = false;
+  for (const [i, prevScore] of scores.entries()) {
+    if (newScore.score > prevScore.score) {
+      scores.splice(i, 0, newScore);
+      found = true;
+      break;
+    }
+  }
+
+  if (!found) {
+    scores.push(newScore);
+  }
+
+  if (scores.length > 10) {
+    scores.length = 10;
+  }
+
+  return scores;
+}
+
+    
+    
+    in the application js
+    
+    async function loadScores() {
+    const response = await fetch("/api/scores")
+    const scores = await response.json() }
+
+    // Modify the DOM to display the scores
