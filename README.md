@@ -176,3 +176,18 @@ function updateScores(newScore, scores) {
     const scores = await response.json() }
 
     // Modify the DOM to display the scores
+    
+## MongoDB
+
+add environment vars :: sudo nano ~/.zprofile
+> VARNAME = value
+
+reading in the env vars
+> const var = process.env.VARNAME;
+
+conneciton string for mongoDb :: mongodb+srv://${userName}:${password}@${hostname}
+
+# connect to db cluster
+> const url = `mongodb+srv://${userName}:${password}@${hostname}`;
+> const client = new MongoClient(url);
+> const collection = client.db(//dbname).collection(//collectionname);
