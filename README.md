@@ -187,7 +187,7 @@ reading in the env vars
 
 conneciton string for mongoDb :: mongodb+srv://${userName}:${password}@${hostname}
 
-# connect to db cluster
+connect to db cluster
 > const url = `mongodb+srv://${userName}:${password}@${hostname}`;
 > const client = new MongoClient(url);
 > const collection = client.db(//dbname).collection(//collectionname);
