@@ -191,3 +191,43 @@ connect to db cluster
 > const url = `mongodb+srv://${userName}:${password}@${hostname}`;
 > const client = new MongoClient(url);
 > const collection = client.db(//dbname).collection(//collectionname);
+
+
+## Authentication
+
+Simon examples
+
+encrypt the passwords
+> const bcrypt = require('bcrypt');
+
+> async function createUser(email, password) {
+> // Hash the password before we insert it into the database
+> const passwordHash = await bcrypt.hash(password, 10);
+
+login
+>// loginAuthorization from the given credentials
+>app.post('/auth/login', async (req, res) => {
+>  const user = await getUser(req.body.email);
+>  if (user) {
+>    if (await bcrypt.compare(req.body.password, user.password)) {
+>      setAuthCookie(res, user.token);
+>      res.send({ id: user._id });
+>      return;
+>    }
+>  }
+>  res.status(401).send({ msg: 'Unauthorized' });
+>});
+
+create
+// createAuthorization from the given credentials
+>app.post('/auth/create', async (req, res) => {
+>  if (await getUser(req.body.email)) {
+>    res.status(409).send({ msg: 'Existing user' });
+>  } else {
+>    const user = await createUser(req.body.email, req.body.password);
+>    setAuthCookie(res, user.token);
+>    res.send({
+>      id: user._id,
+>    });
+>  }
+>});
