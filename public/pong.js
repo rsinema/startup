@@ -756,7 +756,7 @@ async function saveScore(score) {
 
         try {
             console.log('try')
-        const response = await fetch('/api/score', {
+            const response = await fetch('/api/score', {
             method: 'POST',
             headers: { 'content-type': 'application/json' },
             body: JSON.stringify(newScore),
@@ -766,6 +766,7 @@ async function saveScore(score) {
         const scores = await response.json();
         localStorage.setItem('scores', JSON.stringify(scores));
         } catch {
+            console.log('catch')
         // If there was an error then just track scores locally
         this.updateScoresLocal(newScore);
         }
