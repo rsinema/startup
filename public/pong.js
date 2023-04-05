@@ -747,6 +747,7 @@ function clearCanvas() {
 } //*/
 
 async function saveScore(score) {
+    console.log('saveScore')
     const userName = this.getPlayerName();
     const date = new Date().toLocaleDateString();
     const newScore = { name: userName, score: score, date: date };
