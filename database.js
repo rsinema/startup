@@ -14,10 +14,12 @@ const client = new MongoClient(url);
 const scoreCollection = client.db('pong').collection('score');
 
 function addScore(score) {
+    console.log('addScore')
   scoreCollection.insertOne(score);
 }
 
 function getHighScores() {
+    console.log('getHighScores')
   const query = {score: {$gt: 0}};
   const options = {
     sort: {score: -1},

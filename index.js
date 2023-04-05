@@ -4,6 +4,7 @@ const DB = require('./database.js');
 
 // The service port. In production the application is statically hosted by the service on the same port.
 const port = process.argv.length > 2 ? process.argv[2] : 3000;
+console.log(port)
 
 // JSON body parsing using built-in middleware
 app.use(express.json());
@@ -14,6 +15,8 @@ app.use(express.static('public'));
 // Router for service endpoints
 var apiRouter = express.Router();
 app.use(`/api`, apiRouter);
+
+// !!!!!!!! alt + cmd + j => opens the console on chrome
 
 // GetScores
 apiRouter.get('/scores', async (_req, res) => {
