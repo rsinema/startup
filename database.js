@@ -6,6 +6,8 @@ const hostname = process.env.MONGOHOSTNAME;
 
 if (!userName) {
   throw Error('Database not configured. Set environment variables');
+} else {
+    console.log('at least something is right')
 }
 
 const url = `mongodb+srv://${userName}:${password}@${hostname}`;
