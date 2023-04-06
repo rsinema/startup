@@ -52,7 +52,9 @@ async function loginOrCreate(endpoint) {
         console.log('status :: 200')
         window.location.href = 'pong.html';
     } else {
+        console.log('error message')
         const modalEl = document.querySelector('#msgModal');
+        console.log(modalEl)
         modalEl.querySelector('.modal-body').textContent = `⚠ Error: ${body.msg}`;
         const msgModal = new bootstrap.Modal(modalEl, {});
         msgModal.show();
