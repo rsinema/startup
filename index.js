@@ -4,6 +4,8 @@ const express = require('express');
 const app = express();
 const DB = require('./database.js');
 
+const authCookieName = 'token';
+
 // The service port. In production the application is statically hosted by the service on the same port.
 const port = process.argv.length > 2 ? process.argv[2] : 3000;
 
@@ -39,15 +41,15 @@ if (await DB.getUser(req.body.email)) {
 
 apiRouter.post('/auth/login', async (req, res) => {
     console.log('login api')
-const user = await DB.getUser(req.body.email);
-if (user) {
-    if (await bcrypt.compare(req.body.password, user.password)) {
-    setAuthCookie(res, user.token);
-    res.send({ id: user._id });
-    return;
+    const user = await DB.getUser(req.body.email);
+    if (user) {
+        if (await bcrypt.compare(req.body.password, user.password)) {
+        setAuthCookie(res, user.token);
+        res.send({ id: user._id });
+        return;
+        }
     }
-}
-res.status(401).send({ msg: 'Unauthorized' });
+    es.status(401).send({ msg: 'Unauthorized' });
 });
 
 apiRouter.delete('/auth/logout', (_req, res) => {
