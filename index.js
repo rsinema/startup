@@ -22,6 +22,7 @@ app.use(`/api`, apiRouter);
 // !!!!!!!! alt + cmd + j => opens the console on chrome
 
 apiRouter.post('/auth/create', async (req, res) => {
+    console.log('create api')
 if (await DB.getUser(req.body.email)) {
     res.status(409).send({ msg: 'Existing user' });
 } else {
@@ -37,6 +38,7 @@ if (await DB.getUser(req.body.email)) {
 });
 
 apiRouter.post('/auth/login', async (req, res) => {
+    console.log('login api')
 const user = await DB.getUser(req.body.email);
 if (user) {
     if (await bcrypt.compare(req.body.password, user.password)) {

@@ -33,6 +33,7 @@ async function createUser() {
 }
   
 async function loginOrCreate(endpoint) {
+    console.log('loginOrCreate')
     const userName = document.querySelector('#userName')?.value;
     const password = document.querySelector('#userPassword')?.value;
     const response = await fetch(endpoint, {
