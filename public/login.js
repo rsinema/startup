@@ -44,8 +44,11 @@ async function loginOrCreate(endpoint) {
     });
     const body = await response.json();
 
+    console.log(response?.status)
+
     if (response?.status === 200) {
         localStorage.setItem('userName', userName);
+        console.log('status :: 200')
         window.location.href = 'pong.html';
     } else {
         const modalEl = document.querySelector('#msgModal');
