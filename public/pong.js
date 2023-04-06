@@ -497,6 +497,10 @@ function TwoPlayer(canvas) {
 
 function OnePlayerInfinite(canvas) {
     document.getElementById('play').removeEventListener('click', clearCanvas);
+    this.configureWebSocket();
+    this.broadcastEvent(this.getPlayerName(), GameStartEvent, {})
+
+    socket;
 
     const FRAMES_PER_SECOND = 60;
     const FRAME_RATE_ADJUST = 30 / FRAMES_PER_SECOND;
@@ -708,12 +712,49 @@ function OnePlayerInfinite(canvas) {
         canvasContext.fillStyle = drawColor;
         canvasContext.fillRect(leftX, topY, width, height);
     }
+
+    async function configureWebSocket() {
+        console.log('configure')
+        const protocol = window.location.protocol === 'http:' ? 'ws' : 'wss';
+        this.socket = new WebSocket(`${protocol}://${window.location.host}/ws`);
+        this.socket.onopen = (event) => {
+            this.displayMsg('system', 'game', 'connected');
+        };
+        this.socket.onclose = (event) => {
+            this.displayMsg('system', 'game', 'disconnected');
+        };
+        this.socket.onmessage = async (event) => {
+            console.log('onmessage')
+            const msg = JSON.parse(await event.data.text());
+            console.log(msg)
+            if (msg.type === GameEndEvent) {
+            this.displayMsg('player', msg.from, `scored ${msg.value.score}`);
+            } else if (msg.type === GameStartEvent) {
+            this.displayMsg('player', msg.from, `started a new game`);
+            }
+        };
+    }
+    
+    function displayMsg(cls, from, msg) {
+        const chatText = document.querySelector('#player-messages');
+        chatText.innerHTML =
+            `<div class="event"><span class="${cls}-event">${from}</span> ${msg}</div>` + chatText.innerHTML;
+    }
+    
+    function broadcastEvent(from, type, value) {
+        const event = {
+          from: from,
+          type: type,
+          value: value,
+        };
+        console.log('broadcast')
+        console.log(event)
+        this.socket.send(JSON.stringify(event));
+    }
 }
 
-configureWebSocket();
 document.getElementById('play').addEventListener('click', clearCanvas);
 pong = null;
-socket;
 
 function startGame() {
     canvas = document.getElementById('gameCanvas');
@@ -723,7 +764,6 @@ function startGame() {
         pong = new TwoPlayer(canvas);
     } else if (document.getElementById("Infinite1PLayerRadio").checked) {
         pong = new OnePlayerInfinite(canvas);
-        this.broadcastEvent(this.getPlayerName(), GameStartEvent, {})
     }
 }
 
@@ -745,8 +785,6 @@ async function saveScore(score) {
         const userName = this.getPlayerName();
         const date = new Date().toLocaleDateString();
         const newScore = { name: userName, score: score, date: date };
-
-        this.broadcastEvent(userName, GameEndEvent, newScore);
 
         try {
             console.log('try')
@@ -789,43 +827,4 @@ function updateScoresLocal(userName, score, scores) {
     }
 
     return scores;
-}
-
-async function configureWebSocket() {
-    console.log('configure')
-    const protocol = window.location.protocol === 'http:' ? 'ws' : 'wss';
-    this.socket = new WebSocket(`${protocol}://${window.location.host}/ws`);
-    this.socket.onopen = (event) => {
-        this.displayMsg('system', 'game', 'connected');
-    };
-    this.socket.onclose = (event) => {
-        this.displayMsg('system', 'game', 'disconnected');
-    };
-    this.socket.onmessage = async (event) => {
-        console.log('onmessage')
-        const msg = JSON.parse(await event.data.text());
-        console.log(msg)
-        if (msg.type === GameEndEvent) {
-        this.displayMsg('player', msg.from, `scored ${msg.value.score}`);
-        } else if (msg.type === GameStartEvent) {
-        this.displayMsg('player', msg.from, `started a new game`);
-        }
-    };
-}
-
-function displayMsg(cls, from, msg) {
-    const chatText = document.querySelector('#player-messages');
-    chatText.innerHTML =
-        `<div class="event"><span class="${cls}-event">${from}</span> ${msg}</div>` + chatText.innerHTML;
-}
-
-function broadcastEvent(from, type, value) {
-    const event = {
-      from: from,
-      type: type,
-      value: value,
-    };
-    console.log('broadcast')
-    console.log(event)
-    this.socket.send(JSON.stringify(event));
 }
