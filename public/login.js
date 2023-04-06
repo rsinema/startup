@@ -46,7 +46,7 @@ async function loginOrCreate(endpoint) {
 
     if (response?.status === 200) {
         localStorage.setItem('userName', userName);
-        window.location.href = 'play.html';
+        window.location.href = 'pong.html';
     } else {
         const modalEl = document.querySelector('#msgModal');
         modalEl.querySelector('.modal-body').textContent = `⚠ Error: ${body.msg}`;
