@@ -712,7 +712,6 @@ function OnePlayerInfinite(canvas) {
 
 document.getElementById('play').addEventListener('click', clearCanvas);
 pong = null;
-socket;
 configureWebSocket();
 
 function startGame() {
