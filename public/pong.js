@@ -497,6 +497,7 @@ function TwoPlayer(canvas) {
 
 function OnePlayerInfinite(canvas) {
     document.getElementById('play').removeEventListener('click', clearCanvas);
+
     const FRAMES_PER_SECOND = 60;
     const FRAME_RATE_ADJUST = 30 / FRAMES_PER_SECOND;
 
@@ -711,7 +712,8 @@ function OnePlayerInfinite(canvas) {
 
 configureWebSocket();
 document.getElementById('play').addEventListener('click', clearCanvas);
-pong = null
+pong = null;
+socket;
 
 function startGame() {
     canvas = document.getElementById('gameCanvas');
