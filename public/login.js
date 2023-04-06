@@ -62,7 +62,7 @@ async function loginOrCreate(endpoint) {
 }
   
 function play() {
-    window.location.href = 'play.html';
+    window.location.href = 'pong.html';
 }
   
 function logout() {

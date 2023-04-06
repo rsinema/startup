@@ -821,5 +821,6 @@ function broadcastEvent(from, type, value) {
       type: type,
       value: value,
     };
+    console.log('broadcast')
     this.socket.send(JSON.stringify(event));
 }
