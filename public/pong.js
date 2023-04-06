@@ -709,6 +709,7 @@ function OnePlayerInfinite(canvas) {
     }
 }
 
+configureWebSocket();
 document.getElementById('play').addEventListener('click', clearCanvas);
 pong = null
 
