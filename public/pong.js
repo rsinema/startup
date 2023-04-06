@@ -788,7 +788,8 @@ function updateScoresLocal(userName, score, scores) {
     return scores;
 }
 
-function configureWebSocket() {
+async function configureWebSocket() {
+    console.log('configure')
     const protocol = window.location.protocol === 'http:' ? 'ws' : 'wss';
     this.socket = new WebSocket(`${protocol}://${window.location.host}/ws`);
     this.socket.onopen = (event) => {
