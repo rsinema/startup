@@ -49,3 +49,19 @@ menu .nav-item {
     border-bottom: solid rgb(182, 182, 182) thin;
     font-family: monospace;
 }
+
+.input-group {
+    width: 500px !important;
+    margin: auto;
+}
+
+#playControls {
+    margin: auto;
+    padding: auto;
+    text-align: center;
+}
+
+#playerName {
+    margin: auto;
+    font-size: 200%;
+}
