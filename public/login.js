@@ -4,7 +4,6 @@
     console.log(userName)
     if (userName) {
         const nameEl = document.getElementById('userName');
-        console.log(nameEl)
         nameEl.value = userName;
         const user = await getUser(nameEl.value);
         authenticated = user?.authenticated;
