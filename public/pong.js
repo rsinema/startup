@@ -800,7 +800,9 @@ async function configureWebSocket() {
         this.displayMsg('system', 'game', 'disconnected');
     };
     this.socket.onmessage = async (event) => {
+        console.log('onmessage')
         const msg = JSON.parse(await event.data.text());
+        console.log(msg)
         if (msg.type === GameEndEvent) {
         this.displayMsg('player', msg.from, `scored ${msg.value.score}`);
         } else if (msg.type === GameStartEvent) {
