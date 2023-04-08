@@ -322,7 +322,8 @@ Simon React
       </footer>
     </div>
   );
-}'''
+}
+    '''
     
 1. **Create view components**
 1. **Create the router**
