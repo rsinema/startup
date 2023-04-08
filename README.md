@@ -278,52 +278,52 @@ Simon React
 1. **Populate App.jsx**
     > One of the big advantages of React is the ability to represent your web application as a modular single page application instead of a set of interconnected redundant HTML pages. Instead of an HTML page for each functional piece, you now have a React component for each functional piece. The app.jsx file represents the application component that is the parent of all our other components.
     
-    '''jsx
-    function App() {
+  ```jsx
+  function App() {
   return (
-    <div className='body bg-dark text-light'>
-      <header className='container-fluid'>
-        <nav className='navbar fixed-top navbar-dark'>
-          <div className='navbar-brand'>
-            Simon<sup>&reg;</sup>
-          </div>
-          <menu className='navbar-nav'>
-            <li className='nav-item'>
-              <a className='nav-link active' href='index.html'>
-                Home
-              </a>
-            </li>
-            <li className='nav-item'>
-              <a className='nav-link' href='play.html'>
-                Play
-              </a>
-            </li>
-            <li className='nav-item'>
-              <a className='nav-link' href='scores.html'>
-                Scores
-              </a>
-            </li>
-            <li className='nav-item'>
-              <a className='nav-link' href='about.html'>
-                About
-              </a>
-            </li>
-          </menu>
-        </nav>
-      </header>
-
-      <footer className='bg-dark text-dark text-muted'>
-        <div className='container-fluid'>
-          <span className='text-reset'>Author Name(s)</span>
-          <a className='text-reset' href='https://github.com/webprogramming260/simon-react'>
-            Source
-          </a>
+  <div className='body bg-dark text-light'>
+    <header className='container-fluid'>
+      <nav className='navbar fixed-top navbar-dark'>
+        <div className='navbar-brand'>
+          Simon<sup>&reg;</sup>
         </div>
-      </footer>
-    </div>
+        <menu className='navbar-nav'>
+          <li className='nav-item'>
+            <a className='nav-link active' href='index.html'>
+              Home
+            </a>
+          </li>
+          <li className='nav-item'>
+            <a className='nav-link' href='play.html'>
+              Play
+            </a>
+          </li>
+          <li className='nav-item'>
+            <a className='nav-link' href='scores.html'>
+              Scores
+            </a>
+          </li>
+          <li className='nav-item'>
+            <a className='nav-link' href='about.html'>
+              About
+            </a>
+          </li>
+        </menu>
+      </nav>
+    </header>
+
+    <footer className='bg-dark text-dark text-muted'>
+      <div className='container-fluid'>
+        <span className='text-reset'>Author Name(s)</span>
+        <a className='text-reset' href='https://github.com/webprogramming260/simon-react'>
+          Source
+        </a>
+      </div>
+    </footer>
+  </div>
   );
-}
-    '''
+  }
+  ```
     
 1. **Create view components**
 1. **Create the router**
