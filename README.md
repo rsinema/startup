@@ -49,6 +49,7 @@ SSH Command:: ssh -i /Users/rileysinema/Desktop/260-server-keypair.pem ubuntu@3.
 Update Script Command:: ./deployWebsite.sh -k /Users/rileysinema/Desktop/260-server-keypair.pem -h 260webprograming.click
 
 Update Simon Command:: ./deployService.sh -k /Users/rileysinema/Desktop/260-server-keypair.pem -h 260webprograming.click -s simon
+- React:: ./deployReact.sh -k /Users/rileysinema/Desktop/260-server-keypair.pem -h 260webprograming.click -s simon
 
 ## CSS
 
