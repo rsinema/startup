@@ -253,3 +253,152 @@ WebSocket
 >      }
 >    };
 >  }
+    
+Simon React
+
+1. **Reorganize Simon**
+    > We want the service code in a service directory and the React code in the src directory.
+1. **Commit**: Commit this version in Git as the starting place for the conversion to React. It won't run, but by committing at this point can revert if necessary, instead of starting over. Make sure you keep testing and committing throughout this process.
+1. **Create template React application**. Run `npx create-react-app template-react`. This creates a new directory named `template-react` that contains the basic configuration and template React application code.
+1. **Clean up template code**
+   1. Uninstall and NPM packages you won't use (e.g. stats, test)
+   1. Delete the unnecessary create-react-app files (e.g. images)
+   1. Rename `js` JSX files have `jsx` extension
+   1. Replace the `favicon.ico` with the Simon icon
+   1. Update `manifest.json` to represent Simon
+   1. Clean up the `index.html` file to have the proper fields for Simon
+1. **Move template files to Simon**
+1. **Convert to React Bootstrap**
+    > To use the React version of Bootstrap import the NPM package.
+    > npm install bootstrap react-bootstrap
+    
+    > Now, in the components where you want to refer to the Bootstrap styles, you can import the css from the imported NPM package just like you would          other CSS files.
+
+    >> import 'bootstrap/dist/css/bootstrap.min.css';
+1. **Populate App.jsx**
+    > One of the big advantages of React is the ability to represent your web application as a modular single page application instead of a set of interconnected redundant HTML pages. Instead of an HTML page for each functional piece, you now have a React component for each functional piece. The app.jsx file represents the application component that is the parent of all our other components.
+    
+    '''jsx
+    function App() {
+  return (
+    <div className='body bg-dark text-light'>
+      <header className='container-fluid'>
+        <nav className='navbar fixed-top navbar-dark'>
+          <div className='navbar-brand'>
+            Simon<sup>&reg;</sup>
+          </div>
+          <menu className='navbar-nav'>
+            <li className='nav-item'>
+              <a className='nav-link active' href='index.html'>
+                Home
+              </a>
+            </li>
+            <li className='nav-item'>
+              <a className='nav-link' href='play.html'>
+                Play
+              </a>
+            </li>
+            <li className='nav-item'>
+              <a className='nav-link' href='scores.html'>
+                Scores
+              </a>
+            </li>
+            <li className='nav-item'>
+              <a className='nav-link' href='about.html'>
+                About
+              </a>
+            </li>
+          </menu>
+        </nav>
+      </header>
+
+      <footer className='bg-dark text-dark text-muted'>
+        <div className='container-fluid'>
+          <span className='text-reset'>Author Name(s)</span>
+          <a className='text-reset' href='https://github.com/webprogramming260/simon-react'>
+            Source
+          </a>
+        </div>
+      </footer>
+    </div>
+  );
+}'''
+    
+1. **Create view components**
+1. **Create the router**
+    >With app.jsx containing the header and footer and all the application view component stubs created, we can now create the router that will display each component as the navigation UI requests it.
+
+    >This is done by inserting the react-router-dom package into the project. First, install the package with npm install react-router-dom and then include the router component in the index.jsx and app.jsx files.
+1. **Convert to React components**
+    
+    The basic steps for converting the component include the following.
+
+- Copy the HTML over and put it in the return value of the component.
+- The `class` attribute is renamed to `className` so that it doesn't conflict with the JavaScript keyword `class`.
+
+- Delete the header and footer HTML since they are now represented in `app.jsx`.
+- Copy the JavaScript over and turn the functions into inner functions of the React component.
+- Create a file for the CSS and use an import statement in the component `jsx` file.
+- Create React state variables for each of the stateful objects in the component.
+- Replaced DOM query selectors with React state variables.
+- Move state up to parent components as necessary. For example, authentication state, or user name state.
+- Create child components as necessary. For example, a SimonGame and SimonButton component.
+    
+1. **Set up to debug**
+    
+    Each of the HTML pages in the original code needs to be converted to a component represented by a corresponding `jsx` file. Each of the components is a bit different, and so you want to inspect them to see what they look like as a React component.
+
+The basic steps for converting the component include the following.
+
+- Copy the HTML over and put it in the return value of the component.
+- The `class` attribute is renamed to `className` so that it doesn't conflict with the JavaScript keyword `class`.
+
+- Delete the header and footer HTML since they are now represented in `app.jsx`.
+- Copy the JavaScript over and turn the functions into inner functions of the React component.
+- Create a file for the CSS and use an import statement in the component `jsx` file.
+- Create React state variables for each of the stateful objects in the component.
+- Replaced DOM query selectors with React state variables.
+- Move state up to parent components as necessary. For example, authentication state, or user name state.
+- Create child components as necessary. For example, a SimonGame and SimonButton component.
+
+## Setup to debug
+
+When running in production, the Simon web service running under Node.js on port 3000 serves up the Simon React application code when the browser requests `index.html`. This is the same as we did with previous Simon deliverables. The service pulls those files from the application's static HTML, CSS, and JavaScript files located in the `public` directory that we set up when we build the production distribution package.
+
+![Setting up React ports](simonProduction.jpg)
+
+However, when the application is running in debug mode on your development environment we actually need two HTTP servers running. One for the Node.js web service, so that we can debug the service endpoints, and one for the React client HTTP debugger, so that we can develop and debug the React application code.
+
+To make this work when doing development debugging, we configure the React debugger HTTP server to listen on port 3001 and leave the Node.js server to listen on port 3000.
+
+![Setting up React ports](simonDevelopmentDebugging.jpg)
+
+To configure the React HTTP debugger to listen on port 3001 when running in our local development environment, we create a file named `.env.local` in the root of the project, and insert the following text.
+
+```
+PORT=3001
+```
+
+Next, we modify the `package.json` file to include the field `"proxy": "http://localhost:3000"`. This tells the React HTTP debugger that if a request is made for a service endpoint, it forwards it to port 3000, where our Node.js service is listening.
+
+```json
+{
+  "name": "simon-react",
+  // ...
+  "proxy": "http://localhost:3000"
+}
+```
+
+We also need to change the front-end WebSocket initialization found in the `gameNotifier.js` constructor to explicitly use the service port (3000) instead of the React HTTP debugger port (3001). Without this the front-end will send the webSocket messages to the React debug HTTP server listening on port 3001 and unlike HTTP traffic, it will not forward them onto port 3000 automatically. To explicitly send webSocket requests to port 3000 we use the dynamically injected process environment variable that is set when webpack creates the application bundle.
+
+```js
+let port = window.location.port;
+if (process.env.NODE_ENV !== 'production') {
+  port = 3000;
+}
+```
+
+This is a bit of annoying configuration, but without it you won't be able to debug your entire application in your development environment.
+1. Refactor play.jsx into simonGame.jsx, simonButton.jsx, and players.jsx
+1. Refactor components to take advantage of React specific functionality and to create sub-components
+1. Move webSocket code from play.jsx to gameNotifier.js
